@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://127.0.0.1:5500/StudEase-By%20Code%20Comets.html -->
+{% load static %}
+<html lang="en">
+
+<head>
+  <script>
+  {% block script %}{% endblock script %}
+  </script>
+  <link rel="icon" href="{% static '/img/favicon.png' %}" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" />
+
+  <link rel="stylesheet" href="{% static "/styles/css2.css" %}">
+  <link rel="stylesheet" href=" {% static "/styles/bootstrapmin.css" %}">
+  <link rel="stylesheet" href="{% static "/styles/fontawesome.css" %} ">
+      <link rel=" stylesheet" href="{% static "/styles/templatemo-space-dynamic.css" %}">
+  <link rel="stylesheet" href="{% static "/styles/animated.css" %}">
+  <link rel="stylesheet" href="{% static "/styles/owl.css" %}">
+  <link rel="stylesheet" href="{% static "/assets/css/style.css" %}">
+  <title>{% block title %}{% endblock title %}</title>
+  
+  <style>
+    {% block style %}{% endblock style %}
+    * {
+      padding: 0px;
+      margin: 0px;
+    }
+
+    .footer-area {
+      background-color: #1a1a1a;
+      {% block footerbottom %}{% endblock footerbottom %}
+    }
+
+    .footer-area p {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body style="
+      {% block backgroundcolor %} {% endblock backgroundcolor %}
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 10%;
+      background-position-x: 100px;
+      background: position-y 10px; ;
+      background-size: cover;
+    " class="vsc-initialized">
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown animated background-header" data-wow-duration="0.75s"
+    data-wow-delay="0s" style="
+        visibility: visible;
+        -webkit-animation-duration: 0.75s;
+        -moz-animation-duration: 0.75s;
+        animation-duration: 0.75s;
+        -webkit-animation-delay: 0s;
+        -moz-animation-delay: 0s;
+        animation-delay: 0s;
+      ">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="/" class="logo">
+              <h4>STUD<span>EASE</span></h4>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section">
+                <a href="index" class="">Home</a>
+              </li>
+              <li class="scroll-to-section">
+                <a href="index" class="">About Us</a>
+              </li>
+              <li class="scroll-to-section">
+                <a href="index" class="">Services</a>
+              </li>
+              <li class="scroll-to-section">
+                <a href="index">Message Us</a>
+              </li>
+              <li class="scroll-to-section"><a href="" class="logout">HELLO, {{welcomenote}}</a></li>
+              <li class="scroll-to-section"><a href="logout" class="logout">Logout</a></li>
+              <li class="scroll-to-section"><div class="main-red-button"><a href="">HELLO, {% block hello %}{% endblock hello %}</a></div></li>
+            </ul>
+            <a class="menu-trigger">
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <body>
+    {% block body %}{% endblock body %}
+    <footer style="position: fixed; bottom: 1px;" class="footer-area fixed-bottom">
+      <div class="footer-container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="company-about">
+              Copyright ©️ 2023 Code Comets Limied. All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Code injected by live-server -->
+    <script>
+      {% block scriptbottom %}{% endblock scriptbottom %}
+    </script>
+    <script>
+      // <![CDATA[  <-- For SVG support
+      if ("WebSocket" in window) {
+        (function () {
+          function refreshCSS() {
+            var sheets = [].slice.call(document.getElementsByTagName("link"));
+            var head = document.getElementsByTagName("head")[0];
+            for (var i = 0; i < sheets.length; ++i) {
+              var elem = sheets[i];
+              var parent = elem.parentElement || head;
+              parent.removeChild(elem);
+              var rel = elem.rel;
+              if (
+                (elem.href && typeof rel != "string") ||
+                rel.length == 0 ||
+                rel.toLowerCase() == "stylesheet"
+              ) {
+                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, "");
+                elem.href =
+                  url +
+                  (url.indexOf("?") >= 0 ? "&" : "?") +
+                  "_cacheOverride=" +
+                  new Date().valueOf();
+              }
+              parent.appendChild(elem);
+            }
+          }
+          var protocol =
+            window.location.protocol === "http:" ? "ws://" : "wss://";
+          var address =
+            protocol + window.location.host + window.location.pathname + "/ws";
+          var socket = new WebSocket(address);
+          socket.onmessage = function (msg) {
+            if (msg.data == "reload") window.location.reload();
+            else if (msg.data == "refreshcss") refreshCSS();
+          };
+          if (
+            sessionStorage &&
+            !sessionStorage.getItem("IsThisFirstTime_Log_From_LiveServer")
+          ) {
+            console.log("Live reload enabled.");
+            sessionStorage.setItem("IsThisFirstTime_Log_From_LiveServer", true);
+          }
+        })();
+      } else {
+        console.error(
+          "Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading."
+        );
+      }
+      // ]]>
+    </script>
+    {% comment %} <script src="{% static "/js/animation.js" %}"></script> {% endcomment %}
+        <script src="{% static "/js/bootstrapbundlemin.js" %}"></script>
+        <script src="{% static "/js/imagesloaded.js" %}"></script>
+        <script src="{% static "/js/jquerymin.js" %}"></script>
+        <script src="{% static "/js/owl-carousel.js" %}"></script>
+        <script src="{% static "/js/templatemo-custom.js" %}"></script>
+  </body>
+
+</html>

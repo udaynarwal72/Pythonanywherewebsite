@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block hello %}{{ welcomenote }}{% endblock hello %}
+
+{% block style %}
+* {
+  box-sizing: border-box;
+}
+
+.toggle-container {
+  display: flex;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #3498db;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+}
+
+.toogle-input-present:checked ~ .toggle-label.present {
+  background-color: green;
+}
+.toogle-input-absent:checked ~ .toggle-label.absent {
+  background-color: red;
+}
+.toogle-input-noclass:checked ~ .toggle-label.noclass {
+  background-color: #2980b9; /* Darker blue background color for selected label */
+}
+
+.submit-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #3498db;
+  border: 2px solid #3498db;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+}
+{% endblock style %}
+
+{% block body %}
+<div class="row" style="margin-top: 100px">
+  <h3 class="m-4">All Subjects</h3>
+  <div class="col-12">
+    {% if user_subjects %}
+      <div class="card bg-light ms-4 me-4 mb-4">
+        <div class="card-header">
+          {{welcomenote}}'s SUBJECT RECORD
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <div class="table-responsive">
+              <form action="usercalculatedattendance" method="post">
+                {% csrf_token %}
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subject Name</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for subject in user_subjects %}
+                    <tr>
+                        <td>{{ subject.user_subject }}</td>
+                        <td>
+                            <div class="toggle-container">
+                                <input type="radio" class="toggle-input toogle-input-present" id="present-{{forloop.counter}}" value="present" name="toggle-option-{{ subject.user_subject }}" >
+                                <label class="toggle-label present" for="present-{{forloop.counter}}">Present</label>
+                                <input type="radio" class="toggle-input toogle-input-noclass" id="noclass-{{forloop.counter}}" value="noclass" name="toggle-option-{{ subject.user_subject }}" checked>
+                                <label class="toggle-label noclass" for="noclass-{{forloop.counter}}">No Class</label>
+                                <input type="radio" class="toggle-input toogle-input-absent" id="absent-{{forloop.counter}}" value="absent" name="toggle-option-{{ subject.user_subject }}">
+                                <label class="toggle-label absent" for="absent-{{forloop.counter}}">Absent</label>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                      <td><button class="submit-button" type="submit">Submit</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </p>
+        </div>
+      </div>
+    {% else %}
+      <h5 class="alert alert-primary ms-4 me-4">No Student Records</h5>
+    {% endif %}
+  </div>
+</div>
+{% endblock body %}

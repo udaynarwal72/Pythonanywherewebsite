@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}BuddyShip-StudEase{% endblock title %}
+{% block hello %}
+{{welcomenote}}
+{% endblock hello %}
+{% block style %}
+.child-container {
+    width: 300px;
+    height: 200px;
+    background-color: #f0f0f0;
+    margin: 20px;
+    padding: 20px;
+    /* Add box shadow */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Adjust values as needed */
+    margin-top:100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50px;
+}
+.parent-container{
+    height:100vh;
+    width:100vw;
+    display:flex;
+}
+.heading {
+    border-radius: 12px;
+    background-color: rgba(20, 23, 24, 0.489);
+    top: 5%;
+    position: fixed;
+    font-size: 150px;
+    font-family: "Bungee Spice", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  #result{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    margin-left: inherit;
+   margin-top: 5px;
+    left: 740px;
+    background-color:#ec968a7f ;
+    border: #1a1a1a 2px solid;
+  }
+  body {
+    background-image: url(https://i.pinimg.com/originals/85/04/77/850477fed08bfe98598082bcd309ce70.gif);
+    no-repeat center center/cover,
+    linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+    size: 30%;
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    user-select: none;
+  }
+  #dabba {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    margin-top:200px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height:fit-content;
+    width: 400px;
+    margin-left:35%;
+  }
+  #dabba {
+    box-shadow: 0 0 20px rgba(255, 165, 165, 0.5);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  input[type="datetime-local"],
+  input[type="submit"] {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    color: #333;
+  }
+  input[type="datetime-local"] {
+    padding: 10px;
+    margin: 15px 0;
+    width: 80%;
+    font-size: 16px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    outline: none;
+  }
+  button {
+    background: linear-gradient(45deg, #ffb6c1, #f81717);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: linear-gradient(45deg, #d4506d, #ffb6c1);
+  }
+  #cp {
+    margin: top 50px;
+    background-color: #1a1a1a;
+    padding: 20px 0;
+  }
+{% endblock style %}
+{% comment %} {% block footerbottom %}positon:fixed;{% endblock footerbottom %} {% endcomment %}
+{% block body %}
+{% block backgroundcolor %}{% endblock backgroundcolor %}
+<div class="parent-parent-container">
+    <div class="parent-container" style="
+    margin:80px;
+    flex-direction:column;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    ">
+    {% comment %} {% if entry in sub_section_free_value %} {% endcomment %}
+    {% for entry in vacantvenue %}
+    <div id="name" class="item wow bounceInUp animated" data-wow-duration="1s" data-wow-delay="0.5s" style="
+    visibility: visible;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-delay: 0.5s;
+    -moz-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+    height:100px;
+    width:100px;
+    margin:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+    inset 0 -3em 3em rgba(228, 178, 178, 0.915),
+    0 0 0 2px white,
+    0.3em 0.3em 1em rgba(162, 0, 0, 0.6);
+    border-radius: 20px;
+    ">
+    <div class="hidden-content">
+        <h4>{{entry.room}}</h4>
+    </div>
+</div>
+
+{% endfor %}
+{% comment %} {% else %}
+<div id="name" class="item wow bounceInUp animated" data-wow-duration="1s" data-wow-delay="0.5s" style="
+visibility: visible;
+-webkit-animation-duration: 1s;
+-moz-animation-duration: 1s;
+animation-duration: 1s;
+-webkit-animation-delay: 0.5s;
+-moz-animation-delay: 0.5s;
+animation-delay: 0.5s;
+height:100px;
+width:100px;
+margin:20px;
+display: flex;
+justify-content: center;
+align-items: center;
+align-self:center;
+justify-self:center;
+box-shadow:
+inset 0 -3em 3em rgba(228, 178, 178, 0.915),
+0 0 0 2px white,
+0.3em 0.3em 1em rgba(162, 0, 0, 0.6);
+border-radius: 20px;
+height:100px;
+width:100px;
+">
+<div class="hidden-content">
+    <h4>No data found</h4>
+</div>
+</div>
+{% endif %} {% endcomment %}
+    </div>
+</div>
+{% endblock body %}
+
+{% comment %} room rover-vansh {% endcomment %}
+{% comment %} video-vansh {% endcomment %}
+{% comment %} vacantvenue-uday {% endcomment %}

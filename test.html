@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Dynamic Circular Progress Bar</title>
+  <style>
+    body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+.progress-container {
+  position: relative;
+  text-align: center;
+}
+
+.progress {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #2ecc71 0% 0%,
+    #ecf0f1 0% 100%
+  );
+  display: inline-block;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+  </style>
+</head>
+<body>
+  <div class="progress-container">
+    <div class="progress" id="progress"></div>
+    <span class="progress-text" id="progressText"></span>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  updateProgressFromDatabase();
+  // You can set an interval to periodically update the progress
+  // setInterval(updateProgressFromDatabase, 5000); // Update every 5 seconds
+});
+
+function updateProgressFromDatabase() {
+  // Simulating a request to the server to get the percentage from the database
+  // Replace this with an actual AJAX/fetch request to your server
+  // For example, using the fetch API:
+  fetch("/getPercentageFromDatabase")
+    .then(response => response.json())
+    .then(data => {
+      const percentage = parseFloat(data.percentage); // Assuming the response is a JSON object with a 'percentage' property
+      updateProgress(percentage);
+    })
+    .catch(error => console.error("Error fetching data:", error));
+}
+
+function updateProgress(percentage) {
+  const progress = document.getElementById("progress");
+  const progressText = document.getElementById("progressText");
+
+  progress.style.background = `conic-gradient(
+    #2ecc71 0% ${percentage}%,
+    #ecf0f1 ${percentage}% 100%
+  )`;
+
+  progressText.textContent = `${percentage}%`;
+}
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block hello %}{{ welcomenote }}{% endblock hello %}
+
+{% block style %}
+* {
+  box-sizing: border-box;
+}
+  
+.progress-container {
+    position: relative;
+    text-align: center;
+  }
+  
+  .progress {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #2ecc71 0% 50%,
+      #ecf0f1 50% 100%
+    );
+    display: inline-block;
+  }
+  
+  .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  input, button {
+    margin-top: 10px;
+  }
+  
+{% endblock style %}
+
+{% block body %}
+<div class="row" style="margin-top: 100px">
+  <h3 class="m-4">All Subjects</h3>
+  <div class="col-12">
+    {% if user_subjects %}
+      <div class="card bg-light ms-4 me-4 mb-4">
+        <div class="card-header"><strong>{{welcomenote}}'s Subject Record</strong></div>
+        <div class="card-body">
+          <p class="card-text">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subject Name</th>
+                      <th scope="col">Student Present</th>
+                      <th scope="col">Student Total class</th>
+                      <th scope="col">Attendance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for subject_data in user_subjects %}
+                        {% if subject_data.attendance_data.userprecentage_count < 75 %}
+                        <tr style="color:red">
+                            <td>{{ subject_data.user_subject }}</td>
+                            <td>{{ subject_data.attendance_data.userpresent_count }}</td>
+                            <td>{{ subject_data.attendance_data.userclass_count }}</td>
+                            <td>{{ subject_data.attendance_data.userprecentage_count }}</td>
+                        </tr>
+                        {% else %}
+                        <tr style="color:green">
+                            <td>{{ subject_data.user_subject }}</td>
+                            <td>{{ subject_data.attendance_data.userpresent_count }}</td>
+                            <td>{{ subject_data.attendance_data.userclass_count }}</td>
+                            <td>{{ subject_data.attendance_data.userprecentage_count }}</td>
+                        </tr>
+                        {% endif %}
+                        
+                    {% endfor %}
+
+                </tbody>
+                </table>
+            </div>
+          </p>
+        </div>
+      </div>
+    {% else %}
+      <h5 class="alert alert-primary ms-4 me-4">No Student Records</h5>
+    {% endif %}
+  </div>
+</div>
+{% endblock body %}
+{% block scriptbottom %}
+function updateProgress() {
+    var percentageInput = document.getElementById('percentageInput');
+    var progressText = document.getElementById('progressText');
+    var progress = document.getElementById('progress');
+  
+    var percentage = parseInt(percentageInput.value);
+    percentage = Math.min(100, Math.max(0, percentage)); // Ensure percentage is between 0 and 100
+  
+    progressText.textContent = percentage + '%';
+  
+    // Adjust the conic gradient based on the percentage
+    progress.style.background = `conic-gradient(
+      #2ecc71 0% ${percentage}%,
+      #ecf0f1 ${percentage}% 100%
+    )`;
+  }
+  
+{% endblock scriptbottom %}

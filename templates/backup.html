@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html  lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <title>StudEase-By Code Comets</title>
+    <link rel="stylesheet" href="{% static "/css/css2.css" %}" >
+    <link rel="stylesheet" href=" {% static "/css/bootstrapmin.css" %}" >
+    <link rel="stylesheet" href="{% static "/css/fontawesome.css" %} ">
+    <link rel="stylesheet" href="{% static "/css/templatemo-space-dynamic.css" %}">
+    <link rel="stylesheet" href="{% static "/css/animated.css" %}">
+    <link rel="stylesheet" href="{% static "/css/owl.css" %}">
+
+  </head>
+
+<body style="background-image: url(https://i.pinimg.com/originals/85/04/77/850477fed08bfe98598082bcd309ce70.gif);  background-repeat: no-repeat; background-attachment: fixed; background-size: cover;" class="vsc-initialized">
+
+
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown animated background-header" data-wow-duration="0.75s" data-wow-delay="0s" style="visibility: visible;-webkit-animation-duration: 0.75s; -moz-animation-duration: 0.75s; animation-duration: 0.75s;-webkit-animation-delay: 0s; -moz-animation-delay: 0s; animation-delay: 0s;">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="" class="logo">
+              <h4>STUD<span>EASE</span></h4>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="" class="">Home</a></li>
+              <li class="scroll-to-section"><a href="" class="">About Us</a></li>
+              <li class="scroll-to-section"><a href="" class="">Services</a></li>
+              <li class="scroll-to-section"><a href="logout" class="">Logout</a></li>
+              <li class="scroll-to-section"><div class="main-red-button"><a href="signin">Sign In</a></div></li>
+            </ul>        
+            <a class="menu-trigger">
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+    {% comment %} your code here {% endcomment %}
+<br>
+<br>
+<br>
+<br>
+  
+
+  
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.25s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;-webkit-animation-delay: 0.25s; -moz-animation-delay: 0.25s; animation-delay: 0.25s;">
+          <p style="color: darkkhaki;">© Copyright Code Comets Limited 
+          
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  
+
+</body></html>
+
+
+
+
+
+
+
+
+
+
+<div class="left">
+  <h2>{{currentday}}</h2>
+  <p>{{date}} {{month}}, {{year}}</p>
+</div>
+<div class="right">
+  <h1>81 %</h1>
+</div>
+</div>
+{% for entry in display_table_data %}
+{% if entry.monday != '' %}
+<div class="details">
+<div class="about">
+  <div class="subject">
+      <h2>{{ entry.monday }}</h2>
+      <p>Attended 18/19 Classes</p>
+      <button class="">{{entry.time}}</button>
+  </div>
+  <div class="about_it">
+      <h3>95 %</h3>
+      <div class="check">
+          <button class="button1">-</button><button class="button2">X</button><button class="button3">+</button>
+      </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}

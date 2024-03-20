@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+  {% load static %}
+  {% load humanize %}
+  {% comment %} {% load my_templatetags %} {% endcomment %}
+  {% comment %} {% load django_filters %} {% endcomment %}
+  {% comment %} {% load your_custom_filters %} {% endcomment %}
+  {% block script %}document.getElementsByTagName("html")[0].className += " js";{% endblock script %}
+  {% block csslink %}{% endblock csslink %}
+  {% block Title %}StudEase{% endblock Title %}
+  {% block body %}
+  {% block hello %}{{welcomenote}}{% endblock hello %}
+    {% comment %} {% block backgroundcolor %}background: #ec008c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fc6767, #ec008c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fc6767, #ec008c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    {% endblock backgroundcolor %} {% endcomment %}
+  <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
+    <div class="cd-schedule__timeline">
+      <ul style="display:flex flex-direction:column">
+        <li><strong><span>08:00</span></strong></li>
+        <li><strong><span>08:30</span></strong></li>
+        <li><strong><span>09:00</span></strong></li>
+        <li><strong><span>09:30</span></strong></li>
+        <li><strong><span>10:00</span></strong></li>
+        <li><strong><span>10:30</span></strong></li>
+        <li><strong><span>11:00</span></strong></li>
+        <li><strong><span>11:30</span></strong></li>
+        <li><strong><span>12:00</span></strong></li>
+        <li><strong><span>12:30</span></strong></li>
+        <li><strong><span>13:00</span></strong></li>
+        <li><strong><span>13:30</span></strong></li>
+        <li><strong><span>14:00</span></strong></li>
+        <li><strong><span>14:30</span></strong></li>
+        <li><strong><span>15:00</span></strong></li>
+        <li><strong><span>15:30</span></strong></li>
+        <li><strong><span>16:00</span></strong></li>
+        <li><strong><span>16:30</span></strong></li>
+        <li><strong><span>17:00</span></strong></li>
+        <li><strong><span>17:30</span></strong></li>
+        <li><strong><span>18:00</span></strong></li>
+        <li><strong><span>18:30</span></strong></li>
+      </ul>
+    </div> <!-- .cd-schedule__timeline -->
+    
+    <div class="cd-schedule__events">
+      <ul>
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><h1><span>{{currentday}}</span></h1></div>
+          <ul style="flex-direction:column">
+            {% for entry in display_table_data %}
+            {% if currentday == 'Monday' %}
+            {% if entry.monday != '' %}
+                <li class="cd-schedule__event">
+                    <a data-start="{{ entry.time|date:'H:i' }}" data-end="{{ entry.newtime|date:'H:i' }}" data-content="event-abs-circuit" data-event="event-2" href="#0">
+                        <em class="cd-schedule__name">{{entry.monday}}</em>
+                    </a>
+                </li>
+                {% endif %}
+            {% endif %}
+            {% if currentday == 'Tuesday' %}
+            {% if entry.tuesday != '' %}
+                <li class="cd-schedule__event">
+                    <a data-start="{{ entry.time|date:'H:i' }}" data-end="{{ entry.newtime|date:'H:i' }}" data-content="event-abs-circuit" data-event="event-2" href="#0">
+                        <em class="cd-schedule__name">{{entry.tuesday}}</em>
+                    </a>
+                </li>
+                {% endif %}
+            {% endif %}
+            {% if currentday == 'Wednesday' %}
+            {% if entry.wednesday != '' %}
+                <li class="cd-schedule__event">
+                    <a data-start="{{ entry.time|date:'H:i' }}" data-end="{{ entry.newtime|date:'H:i' }}" data-content="event-abs-circuit" data-event="event-2" href="#0">
+                        <em class="cd-schedule__name">{{entry.wednesday}}</em>
+                    </a>
+                </li>
+                {% endif %}
+            {% endif %} 
+            {% if currentday == 'Thursday' %}
+            {% if entry.thursday != '' %}
+                <li class="cd-schedule__event">
+                    <a data-start="{{ entry.time|date:'H:i' }}" data-end="{{ entry.newtime|date:'H:i' }}" data-content="event-abs-circuit" data-event="event-2" href="#0">
+                        <em class="cd-schedule__name">{{entry.thursday}}</em>
+                    </a>
+                </li>
+                {% endif %}
+            {% endif %}
+            {% if currentday == 'Friday' %}
+            {% if entry.friday != '' %}
+                <li class="cd-schedule__event">
+                    <a data-start="{{ entry.time|date:'H:i' }}" data-end="{{ entry.newtime|date:'H:i' }}" data-content="event-abs-circuit" data-event="event-2" href="#0">
+                        <em class="cd-schedule__name">{{entry.friday}}</em>
+                    </a>
+                </li>
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% if currentday == 'Saturday' %}
+                <li class="cd-schedule__event">
+                    <a data-start="{{ entry.time|date:'H:i' }}" data-end="{{ entry.newtime|date:'H:i' }}" data-content="event-abs-circuit" data-event="event-2" href="#0">
+                        <em class="cd-schedule__name">No Class Today</em>
+                    </a>
+                </li>
+            {% endif %}
+            {% if currentday == 'Sunday' %}
+                <li class="cd-schedule__event">
+                    <a data-start="{{ entry.time|date:'H:i' }}" data-end="{{ entry.newtime|date:'H:i' }}" data-content="event-abs-circuit" data-event="event-2" href="#0">
+                        <em class="cd-schedule__name">No Class Today</em>
+                    </a>
+                </li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  <br> <br> <br> <br> <br> 
+    <div class="cd-schedule-modal">
+      <header class="cd-schedule-modal__header">
+        <div class="cd-schedule-modal__content">
+          <span class="cd-schedule-modal__date"></span>
+          <h3 class="cd-schedule-modal__name"></h3>
+        </div>
+        <div class="cd-schedule-modal__header-bg"></div>
+      </header>
+      <div class="cd-schedule-modal__body">
+        <div class="cd-schedule-modal__event-info"></div>
+        <div class="cd-schedule-modal__body-bg"></div>
+      </div>
+      <a href="#0" class="cd-schedule-modal__close text-replace">Close</a>
+    </div>
+    <div class="cd-schedule__cover-layer"></div>
+  </div> <!-- .cd-schedule -->
+  <script src="{% static "/assets/js/util.js" %} "></script> <!-- util functions included in the CodyHouse framework -->
+  <script src="{% static "/assets/js/main.js" %} "></script>
+  <script src="{% static "/mainservice.js" %}"></script>
+  <script>
+    const beamsClient = new PusherPushNotifications.Client({
+      instanceId: '55ce1d19-843c-4b89-8476-fa7f264cba16',
+    });
+    console.log(beamsClient)
+    beamsClient.start()
+    .then(() => beamsClient.addDeviceInterest('donuts'))
+      .catch(console.error);
+      beamsClient.onNotificationReceived = ({
+        payload,
+        pushEvent,
+        handleNotification,
+      }) => {
+        console.log("hello world")
+        payload.notification.title = "A new title!";
+        pushEvent.waitUntil(handleNotification(payload));
+      };
+  </script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyC_OsWUJW1uJ2kcNk-EEpl3gllUw5XS_X8",
+      authDomain: "studease-8b02a.firebaseapp.com",
+      projectId: "studease-8b02a",
+      storageBucket: "studease-8b02a.appspot.com",
+      messagingSenderId: "227384733554",
+      appId: "1:227384733554:web:82c514e33fd3be021637eb",
+      measurementId: "G-G219X0BYR7"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+  {% endblock body %}
+</html>
+
+
